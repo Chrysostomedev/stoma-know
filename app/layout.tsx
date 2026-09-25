@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { generateThemeCSS } from "@/styles/colors";
+import { ThemeProvider } from "@/context/ThemeContext";
+
 
 const inter = Inter({
   variable: "--font-sans",
@@ -43,7 +45,8 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-canvas text-ink antialiased">
-        {children}
+            <ThemeProvider>{children}</ThemeProvider>
+
       </body>
     </html>
   );

@@ -32,30 +32,33 @@ export const colors = {
   amberLighter: "#FFFBEB",
 
   // Statuts
-  success: "#10B981",
-  successLight: "#D1FAE5",
-  successLighter: "#ECFDF5",
+  success: "#04750f",
+  successLight: "#82ef87",
+  successLighter: "#bef5db",
 
-  danger: "#B4432D",
-  dangerLight: "#FED7D7",
+  danger: "#ba270a",
+  dangerLight: "#f5a9a9",
   dangerLighter: "#FEF2F2",
 
-  warning: "#F59E0B",
-  warningLight: "#FCD34D",
-  warningLighter: "#FFFBEB",
+  warning: "#d78902",
+  warningLight: "#fed343",
+  warningLighter: "#fef8df",
 
   // Neutres & bordures
-  border: "#E5E7EB",
-  borderLight: "#F3F4F6",
+  border: "#6c6c6c",
+  borderLight: "#949ba9",
   borderDark: "#D1D5DB",
 
   // Graphiques
-  chart1: "#0B6E63",
-  chart2: "#3B82F6",
+  chart1: "#083e38",
+  chart2: "#222dc1",
   chart3: "#E1A339",
   chart4: "#10B981",
-  chart5: "#B4432D",
-  chart6: "#9333EA",
+  chart5: "#b5280c",
+  chart6: "#32025f",
+
+
+  
 
   // Overlay & feedback
   overlay: "rgba(0, 0, 0, 0.5)",

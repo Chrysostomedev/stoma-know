@@ -39,7 +39,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             className={cn(
               "px-3 py-1.5 rounded-lg text-sm font-medium transition-colors",
               locale === loc
-                ? "bg-accent text-white"
+                ? "bg-accent text-surface"
                 : "bg-surface-active text-ink hover:bg-border"
             )}
           >

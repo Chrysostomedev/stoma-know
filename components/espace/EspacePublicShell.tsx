@@ -37,7 +37,7 @@ export const EspacePublicShell = React.forwardRef<
           <div className="border-b border-border bg-surface">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-white font-display font-bold text-sm">
+                <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-surface font-display font-bold text-sm">
                   K
                 </div>
                 <span className="font-display font-semibold text-ink hidden sm:inline">

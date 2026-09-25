@@ -1,77 +1,79 @@
-import React from "react";
-import { cn } from "@/lib/utils";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
-  size?: "sm" | "md" | "lg";
-  isLoading?: boolean;
-  icon?: React.ReactNode;
+type ButtonVariant = "default" | "primary" | "secondary" | "outline" | "ghost" | "danger";
+type ButtonSize = "sm" | "md" | "lg";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  icon?: ReactNode;
   iconPosition?: "left" | "right";
   fullWidth?: boolean;
+  isLoading?: boolean;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const variantStyles: Record<ButtonVariant, string> = {
+  default:
+    "bg-accent text-surface border border-accent shadow-xs hover:bg-accent-hover hover:shadow-sm active:shadow-none disabled:bg-accent/50 disabled:border-accent/50",
+  primary:
+    "bg-accent text-surface border border-accent shadow-xs hover:bg-accent-hover hover:shadow-sm active:shadow-none disabled:bg-accent/50 disabled:border-accent/50",
+  secondary:
+    "bg-surface text-ink border border-border shadow-xs hover:bg-surface-hover hover:border-border-dark active:bg-surface-active disabled:text-ink-light disabled:bg-surface",
+  outline:
+    "bg-transparent text-ink border border-border hover:bg-surface-hover hover:border-border-dark active:bg-surface-active disabled:text-ink-light",
+  ghost:
+    "bg-transparent text-ink-muted border border-transparent hover:bg-surface-hover hover:text-ink disabled:text-ink-light",
+  danger:
+    "bg-danger text-surface border border-danger shadow-xs hover:opacity-90 hover:shadow-sm active:shadow-none disabled:opacity-50",
+};
+
+const sizeStyles: Record<ButtonSize, string> = {
+  sm: "h-9 px-3.5 text-sm gap-1.5",
+  md: "h-10 px-4 text-sm gap-2",
+  lg: "h-12 px-6 text-base gap-2.5",
+};
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      variant = "primary",
+      variant = "default",
       size = "md",
-      isLoading = false,
       icon,
       iconPosition = "left",
       fullWidth = false,
-      className,
+      isLoading = false,
       disabled,
+      className = "",
       children,
       ...props
     },
     ref
   ) => {
-    const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-smooth focus-ring rounded-lg font-sans";
-
-    const variantStyles = {
-      primary:
-        "bg-accent text-white hover:bg-accent-hover disabled:bg-border disabled:text-ink-muted",
-      secondary:
-        "bg-surface-active text-accent hover:bg-ink-light/10 disabled:bg-border disabled:text-ink-muted",
-      outline:
-        "border-2 border-accent text-accent hover:bg-accent-lighter disabled:border-border disabled:text-ink-muted",
-      ghost:
-        "text-accent hover:bg-surface-active disabled:text-ink-muted active:bg-ink-light/10",
-      danger:
-        "bg-danger text-white hover:bg-danger-hover disabled:bg-border disabled:text-ink-muted",
-    };
-
-    const sizeStyles = {
-      sm: "px-3 py-2 text-sm gap-2",
-      md: "px-4 py-2.5 text-base gap-2",
-      lg: "px-6 py-3 text-lg gap-3",
-    };
-
     return (
       <button
         ref={ref}
         disabled={disabled || isLoading}
-        className={cn(
-          baseStyles,
+        className={[
+          "inline-flex items-center justify-center rounded-lg font-medium",
+          "transition-[background-color,border-color,box-shadow,transform] duration-smooth ease-smooth",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+          "disabled:cursor-not-allowed disabled:pointer-events-none",
+          "active:scale-[0.98]",
           variantStyles[variant],
           sizeStyles[size],
-          fullWidth && "w-full",
-          className
-        )}
+          fullWidth ? "w-full" : "",
+          className,
+        ]
+          .filter(Boolean)
+          .join(" ")}
         {...props}
       >
-        {isLoading ? (
-          <>
-            <div className="w-4 h-4 border-2 border-current border-r-transparent rounded-full animate-spin" />
-            {children && <span>{children}</span>}
-          </>
-        ) : (
-          <>
-            {icon && iconPosition === "left" && <span>{icon}</span>}
-            {children && <span>{children}</span>}
-            {icon && iconPosition === "right" && <span>{icon}</span>}
-          </>
+        {icon && iconPosition === "left" && (
+          <span className="inline-flex shrink-0">{icon}</span>
+        )}
+          {isLoading ? "Chargement..." : children}
+        {icon && iconPosition === "right" && (
+          <span className="inline-flex shrink-0">{icon}</span>
         )}
       </button>
     );

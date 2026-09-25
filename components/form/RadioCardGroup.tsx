@@ -52,7 +52,7 @@ export const RadioCardGroup = React.forwardRef<
                 )}
               >
                 {value === option.id && (
-                  <Check className="w-3 h-3 text-white animate-in fade-in zoom-in duration-200" />
+                  <Check className="w-3 h-3 text-surface animate-in fade-in zoom-in duration-200" />
                 )}
               </div>
               <div className="flex-1">

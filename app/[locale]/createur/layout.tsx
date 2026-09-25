@@ -45,7 +45,7 @@ export default function CreatorLayout({ children }: CreatorLayoutProps) {
       {/* Overlay sur mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 lg:hidden z-40"
+          className="fixed inset-0 bg-overlay lg:hidden z-40"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -60,7 +60,7 @@ export default function CreatorLayout({ children }: CreatorLayoutProps) {
         {/* Header sidebar */}
         <div className="border-b border-border p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-white font-display font-bold text-sm">
+            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-surface font-display font-bold text-sm">
               K
             </div>
             <span className="font-display font-semibold text-ink">
@@ -78,7 +78,7 @@ export default function CreatorLayout({ children }: CreatorLayoutProps) {
         {/* CTA Créer */}
         <div className="p-4">
           <Link href="/createur/nouveau">
-            <button className="w-full flex items-center gap-2 px-4 py-3 bg-accent text-white rounded-lg hover:bg-accent-hover transition-smooth font-sans font-medium text-sm">
+            <button className="w-full flex items-center gap-2 px-4 py-3 bg-accent text-surface rounded-lg hover:bg-accent-hover transition-smooth font-sans font-medium text-sm">
               <Plus className="w-5 h-5" />
               {t("createNew")}
             </button>
@@ -96,7 +96,7 @@ export default function CreatorLayout({ children }: CreatorLayoutProps) {
                   className={cn(
                     "w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-smooth font-sans text-sm font-medium text-left",
                     isActive
-                      ? "bg-accent text-white"
+                      ? "bg-accent text-surface"
                       : "text-ink hover:bg-surface-active"
                   )}
                 >

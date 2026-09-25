@@ -12,12 +12,12 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     const baseStyles = "inline-flex items-center gap-1.5 font-medium rounded-full font-sans";
 
     const variantStyles = {
-      default: "bg-surface-active text-ink border border-border",
-      success: "bg-success-lighter text-success border border-success/20",
-      warning: "bg-warning-lighter text-warning border border-warning/20",
-      danger: "bg-danger-lighter text-danger border border-danger/20",
-      info: "bg-blue-lighter text-blue border border-blue/20",
-      primary: "bg-accent-lighter text-accent border border-accent/20",
+      default: "bg-surface-active text-ink border border-border shadow-none",
+      success: "bg-success-lighter text-success border border-success/20 shadow-xs",
+      warning: "bg-warning-lighter text-warning border border-warning/20 shadow-xs",
+      danger: "bg-danger-lighter text-danger border border-danger/20 shadow-xs",
+      info: "bg-blue-lighter text-blue border border-blue/20 shadow-xs",
+      primary: "bg-accent-lighter text-accent border border-accent/20 shadow-xs",
     };
 
     const sizeStyles = {

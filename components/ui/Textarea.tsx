@@ -48,12 +48,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           ref={ref}
           className={cn(
-            "w-full px-4 py-2.5 rounded-lg border-2 transition-smooth font-sans text-base",
+            "w-full px-4 py-2.5 rounded-md border-2 transition-smooth font-sans text-base",
             "bg-surface text-ink placeholder-ink-light",
-            "border-border hover:border-border-dark resize-none",
-            "focus-visible:outline-none focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20",
+            "border-border hover:border-border-dark shadow-xs resize-none",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
             "disabled:bg-surface-active disabled:text-ink-muted disabled:cursor-not-allowed",
-            error && "border-danger focus-visible:border-danger focus-visible:ring-danger/20",
+            error && "border-danger focus-visible:ring-danger/20",
             className
           )}
           maxLength={maxLength}

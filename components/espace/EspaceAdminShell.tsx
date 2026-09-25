@@ -41,7 +41,7 @@ export const EspaceAdminShell = React.forwardRef<
         {/* Overlay sur mobile */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 bg-black/50 lg:hidden z-40"
+            className="fixed inset-0 bg-overlay lg:hidden z-40"
             onClick={() => setSidebarOpen(false)}
           />
         )}
@@ -56,7 +56,7 @@ export const EspaceAdminShell = React.forwardRef<
           {/* Header sidebar */}
           <div className="border-b border-border p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-white font-display font-bold text-sm">
+              <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-surface font-display font-bold text-sm">
                 K
               </div>
               <span className="font-display font-semibold text-ink">Admin</span>
@@ -81,7 +81,7 @@ export const EspaceAdminShell = React.forwardRef<
                 className={cn(
                   "w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-smooth font-sans text-sm font-medium text-left",
                   activeNav === item.id
-                    ? "bg-accent text-white"
+                    ? "bg-accent text-surface"
                     : "text-ink hover:bg-surface-active"
                 )}
               >

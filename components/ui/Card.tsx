@@ -1,51 +1,45 @@
-import React from "react";
-import { cn } from "@/lib/utils";
+import { forwardRef, type HTMLAttributes } from "react";
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "default" | "elevated" | "flat" | "outlined";
-  padding?: "none" | "sm" | "md" | "lg";
+type CardPadding = "none" | "sm" | "md" | "lg";
+
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  padding?: CardPadding;
+  variant?: "default" | "flat" | "outlined";
+  /** Active un hover avec ombre plus marquée + légère élévation, pour les cartes cliquables */
   interactive?: boolean;
 }
 
-export const Card = React.forwardRef<HTMLDivElement, CardProps>(
+const paddingStyles: Record<CardPadding, string> = {
+  none: "",
+  sm: "p-4",
+  md: "p-6",
+  lg: "p-8",
+};
+
+export const Card = forwardRef<HTMLDivElement, CardProps>(
   (
-    {
-      variant = "default",
-      padding = "md",
-      interactive = false,
-      className,
-      children,
-      ...props
-    },
+    { padding = "md", variant = "default", interactive = false, className = "", children, ...props },
     ref
   ) => {
-    const baseStyles = "rounded-xl bg-surface";
-
-    const variantStyles = {
-      default: "border border-border shadow-sm",
-      elevated: "shadow-lg",
-      flat: "bg-surface-active border border-border/50",
-      outlined: "border-2 border-accent/20",
-    };
-
-    const paddingStyles = {
-      none: "",
-      sm: "p-3",
-      md: "p-4 md:p-6",
-      lg: "p-6 md:p-8",
-    };
-
     return (
       <div
         ref={ref}
-        className={cn(
-          baseStyles,
-          variantStyles[variant],
+        className={[
+          "rounded-xl border border-border shadow-xs",
+          variant === "flat"
+            ? "bg-surface-active"
+            : variant === "outlined"
+              ? "bg-surface border-2 border-accent/20"
+              : "bg-surface",
+          "transition-[box-shadow,border-color,transform] duration-smooth ease-smooth",
+          interactive
+            ? "hover:shadow-md hover:border-border-dark hover:-translate-y-0.5 cursor-pointer"
+            : "",
           paddingStyles[padding],
-          interactive &&
-            "cursor-pointer transition-smooth hover:shadow-md active:shadow-none",
-          className
-        )}
+          className,
+        ]
+          .filter(Boolean)
+          .join(" ")}
         {...props}
       >
         {children}

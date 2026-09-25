@@ -46,13 +46,13 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-10">
       {/* Titre */}
-      <div className="flex flex-col gap-2">
-        <h1 className="font-display font-bold text-3xl text-ink">
+      <div className="flex flex-col gap-3">
+        <h1 className="font-display font-bold text-4xl text-ink">
           {t("title")}
         </h1>
-        <p className="text-ink-muted font-sans">
+        <p className="text-lg text-ink-muted font-sans">
           Vue d'ensemble de vos rapports et activités
         </p>
       </div>
@@ -60,16 +60,16 @@ export default function AdminDashboard() {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Total */}
-        <Card padding="md" className="flex flex-col gap-3">
+        <Card padding="md" className="flex flex-col gap-4 hover:shadow-md transition-shadow motion-safe:duration-smooth">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-ink-light font-sans">
               {t("totalReports")}
             </span>
-            <div className="p-2 bg-blue-lighter rounded-lg">
+            <div className="p-2.5 bg-blue-lighter rounded-md shadow-xs">
               <FileText className="w-5 h-5 text-blue" />
             </div>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <p className="font-display font-bold text-3xl text-ink">
               {stats?.total || 0}
             </p>
@@ -80,16 +80,16 @@ export default function AdminDashboard() {
         </Card>
 
         {/* Soumis */}
-        <Card padding="md" className="flex flex-col gap-3">
+        <Card padding="md" className="flex flex-col gap-4 hover:shadow-md transition-shadow motion-safe:duration-smooth">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-ink-light font-sans">
               {t("submitted")}
             </span>
-            <div className="p-2 bg-success-lighter rounded-lg">
+            <div className="p-2.5 bg-success-lighter rounded-md shadow-xs">
               <CheckCircle2 className="w-5 h-5 text-success" />
             </div>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <p className="font-display font-bold text-3xl text-ink">
               {stats?.submitted || 0}
             </p>
@@ -100,16 +100,16 @@ export default function AdminDashboard() {
         </Card>
 
         {/* Brouillons */}
-        <Card padding="md" className="flex flex-col gap-3">
+        <Card padding="md" className="flex flex-col gap-4 hover:shadow-md transition-shadow motion-safe:duration-smooth">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-ink-light font-sans">
               {t("drafts")}
             </span>
-            <div className="p-2 bg-warning-lighter rounded-lg">
+            <div className="p-2.5 bg-warning-lighter rounded-md shadow-xs">
               <Clock className="w-5 h-5 text-warning" />
             </div>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <p className="font-display font-bold text-3xl text-ink">
               {stats?.drafts || 0}
             </p>
@@ -120,16 +120,16 @@ export default function AdminDashboard() {
         </Card>
 
         {/* Taux de complétion */}
-        <Card padding="md" className="flex flex-col gap-3">
+        <Card padding="md" className="flex flex-col gap-4 hover:shadow-md transition-shadow motion-safe:duration-smooth">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-ink-light font-sans">
               {t("completionRate")}
             </span>
-            <div className="p-2 bg-accent-lighter rounded-lg">
+            <div className="p-2.5 bg-accent-lighter rounded-md shadow-xs">
               <TrendingUp className="w-5 h-5 text-accent" />
             </div>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <p className="font-display font-bold text-3xl text-ink">
               {stats?.completionRate || 0}%
             </p>
@@ -142,25 +142,25 @@ export default function AdminDashboard() {
 
       {/* Section Départements */}
       {stats?.departmentStats && Object.keys(stats.departmentStats).length > 0 && (
-        <Card padding="md" className="flex flex-col gap-4">
-          <h2 className="font-display font-semibold text-lg text-ink">
+        <Card padding="lg" className="flex flex-col gap-6">
+          <h2 className="font-display font-semibold text-xl text-ink">
             {t("departmentDistribution")}
           </h2>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             {Object.entries(stats.departmentStats).map(([dept, count]: [string, any]) => (
-              <div key={dept} className="flex items-center gap-3">
-                <span className="text-sm font-medium text-ink-light flex-1 font-sans">
+              <div key={dept} className="flex items-center gap-4">
+                <span className="text-sm font-medium text-ink-light flex-shrink-0 w-24 font-sans">
                   {dept}
                 </span>
-                <div className="flex-1 h-2 bg-surface-active rounded-full overflow-hidden">
+                <div className="flex-1 h-2 bg-surface-active rounded-full overflow-hidden shadow-xs">
                   <div
-                    className="h-full bg-accent transition-all duration-300"
+                    className="h-full bg-accent transition-all motion-safe:duration-300"
                     style={{
                       width: `${((count || 0) / (stats?.total || 1)) * 100}%`,
                     }}
                   />
                 </div>
-                <span className="text-sm font-medium text-ink font-sans w-12 text-right">
+                <span className="text-sm font-medium text-ink font-sans w-12 text-right flex-shrink-0">
                   {String(count)}
                 </span>
               </div>
@@ -170,15 +170,15 @@ export default function AdminDashboard() {
       )}
 
       {/* Welcome message */}
-      <Card padding="md" variant="outlined" className="flex flex-col gap-4">
-        <h3 className="font-display font-semibold text-lg text-ink">
+      <Card padding="lg" variant="outlined" className="flex flex-col gap-5 border-2">
+        <h3 className="font-display font-semibold text-xl text-ink">
           {t("welcomeMessage")}
         </h3>
-        <p className="text-ink-muted font-sans">
+        <p className="text-base text-ink-muted font-sans leading-relaxed">
           Cette page affiche une vue d'ensemble de vos rapports. Utilisez le menu
           latéral pour :
         </p>
-        <ul className="flex flex-col gap-2 pl-4">
+        <ul className="flex flex-col gap-3 pl-5">
           <li className="text-sm text-ink-muted font-sans">
             📊 Consulter les rapports détaillés
           </li>

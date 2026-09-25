@@ -56,6 +56,27 @@ const config: Config = {
         sans: "var(--font-sans)",
         display: "var(--font-display)",
       },
+      // Elevation shadow scale (premium depth hierarchy)
+      boxShadow: {
+        xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        sm: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
+        md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+        lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
+      },
+      // Border radius scale (cohesive roundness)
+      borderRadius: {
+        sm: "2px",
+        md: "6px",
+        lg: "8px",
+        xl: "12px",
+      },
+      // Transition utilities for motion consistency
+      transitionDuration: {
+        smooth: "150ms",
+      },
+      transitionTimingFunction: {
+        smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
+      },
     },
   },
   plugins: [],
